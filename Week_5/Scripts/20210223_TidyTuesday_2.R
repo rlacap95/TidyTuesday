@@ -49,35 +49,35 @@ employedClean_race
 
 #Earn Figure
 earnClean_race<- earnClean %>%
-  filter(race %in% c("Black or African American", "White")) %>%
-  filter(year %in% c(2015,2020)) %>% 
-  ggplot(aes(x=year,
+  filter(race %in% c("Black or African American", "White")) %>% #filtered only Black and White data
+  filter(year %in% c(2015,2020)) %>%  #filtered only the years 2015-2020
+  ggplot(aes(x=year, #added ggplot
              y=median_weekly_earn,
              fill=race,
              color=race))+
-  guides(fill=FALSE,
+  guides(fill=FALSE, #removed legends
          color=FALSE)+
-  geom_smooth()+
-  theme_bw()+
-  labs(y = "Median Weekly Earn",
+  geom_smooth()+ #added line graph
+  theme_bw()+ #theme
+  labs(y = "Median Weekly Earn", #labeled x,y axes
        x = " ",
-       title = "Average Weekly Earnings by Race",
-       caption="Data from 2015-2020 | Source: U.S. Bureau of Labor Statistics")+
-  theme(axis.title.y=element_blank(),
+       title = "Average Weekly Earnings by Race", #titled figure with a caption
+       caption="Data from 2015-2020 | Source: U.S. Bureau of Labor Statistics | @rrcml")+
+  theme(axis.title.y=element_blank(), #removed axes titles
         axis.title.x=element_blank(),
-        plot.title=element_text(hjust=0.5,
+        plot.title=element_text(hjust=0.5, #centered figure title and bolded it
                                 face="bold"))+
-  scale_color_manual(values=ghibli_palette("PonyoMedium")[c(3,4)])+
+  scale_color_manual(values=ghibli_palette("PonyoMedium")[c(3,4)])+ #color scale
   scale_fill_manual(values=ghibli_palette("PonyoMedium")[c(3,4)])+
-  scale_x_continuous(labels=c(2010,2012,2014,2016,2018,2020),
-                     breaks=c(2010,2012,2014,2016,2018,2020))+
-  scale_y_continuous(labels=scales::dollar_format(),
+  scale_x_continuous(labels=c(2015,2016,2017,2018,2019,2020), #changed labels for the x axis to represent only years
+                     breaks=c(2015,2016,2017,2018,2019,2020))+
+  scale_y_continuous(labels=scales::dollar_format(), #changed position of y axis and converted into USD dollar formal
                      position = "right")
 earnClean_race
 
-plot<-employedClean_race+earnClean_race + plot_annotation(tag_levels = 'A')+
-  plot_layout(guides = "collect")&theme(legend.position = "bottom")+
-  ggsave(here("Week_5","Output","20210223_Employment_and_Earnings_Disparities.png"))
+plot<-employedClean_race+earnClean_race + plot_annotation(tag_levels = 'A')+ #patched employed figure and earn figure into one figure.
+  plot_layout(guides = "collect")&theme(legend.position = "bottom")+ #change legend position to the bottom
+  ggsave(here("Week_5","Output","20210225_Employment_and_Earnings_Disparities.png")) #ggsave
 
 plot
 
