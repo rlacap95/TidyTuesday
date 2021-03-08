@@ -48,7 +48,7 @@ youtubeClean <- youtube %>% #create new data set
        caption = "Uses like:view ratios. From years 2001-2020, \n
        source: FiveThirtyEight | TidyTuesday",
        x = "", y = "Audience Attention")+
-  ggsave(here("Week_6", "Outputs", "2021_03_04_SodaSuperboal.png"))
+  ggsave(here("Week_6", "Outputs", "2021_03_04_SodaSuperbowl.png"))
 
 youtubeClean
 
