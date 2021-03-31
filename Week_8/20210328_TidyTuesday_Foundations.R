@@ -8,6 +8,7 @@ library(here)
 library(tidytuesdayR)
 library(magick)
 library(tvthemes)
+library(ggplot2)
 
 ### Get Data
 allShades <- readr::read_csv('https://raw.githubusercontent.com/rfordatascience/tidytuesday/master/data/2021/2021-03-30/allShades.csv')
@@ -20,7 +21,7 @@ shadeSep <- allShades %>%
   lightness >= .75 ~ "Light",
 lightness > 0.45 & lightness < 0.75 ~ "Medium",
 lightness <= 0.45 ~ "Deep"
-  )) %>% 
+  )) %>%
   group_by(brand) %>% 
   count(shade) %>% 
   filter(brand %in% c("Anastasia Beverly Hills",
@@ -63,13 +64,30 @@ FoundationPlot <- shadeSep %>%
   scale_x_discrete(limits = c("Light",
                               "Medium",
                               "Deep"))+
-  guides(fill=FALSE)
+  guides(fill=FALSE)+
   facet_wrap(~brand,
              scales = "free",
-             ncol = 6)+
-  theme_avatar()+
-  theme()+
-  scale_fill_manual(values = c("#C99471","#FEEADD","#995D2A"))
+             ncol = 4)+
+  theme_classic()+
+  labs(title = "Which brand has your shade?",
+       subtitle = "Number of foundation shades for each brand.",
+       caption = "Source: ThePudding | @LacapRoland",
+       x = " ", y = " ")+
+  theme(plot.title=element_text(hjust=0.5, #centered figure title in bold
+                                size = 18, face= 2,
+                                family = "serif"),
+        plot.subtitle = element_text (hjust = 0.5), #center subtitle
+        plot.background = element_rect(fill = "#e09f3e"),
+        panel.background = element_rect(fill = "#fff3b0"),
+        axis.text.x = element_text(color = "black",
+                                   size = 10, face = 2),
+        axis.text.y = element_text(color = "black",
+                                   size = 10, face = 2), #change font size of axis text
+        strip.text.x = element_text(size = 12, face = 2, 
+                                    family = "serif"))+ #change the position of axis title
+  scale_fill_manual(values = c("#335c67","#9e2a2b","#540b0e"))+
+  ggsave(here("Week_8","Output","20210330_Foundations_Plot.png"),
+         width = 10, height = 16)
 
 FoundationPlot
          
