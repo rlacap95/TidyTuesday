@@ -6,3 +6,7 @@
 ### [Week 6](https://github.com/rlacap95/TidyTuesday/tree/master/Week_6)
 * [Output](https://github.com/rlacap95/TidyTuesday/tree/master/Week_6/Outputs)
 * [Scripts](https://github.com/rlacap95/TidyTuesday/tree/master/Week_6/Scripts)
+### [Week 7](https://github.com/rlacap95/TidyTuesday/tree/master/Week_7)
+* [Output](https://github.com/rlacap95/TidyTuesday/tree/master/Week_7/Output)
+### [Week 8 - 2 TidyTuesdays](https://github.com/rlacap95/TidyTuesday/tree/master/Week_8)
+* [Output](https://github.com/rlacap95/TidyTuesday/tree/master/Week_8/Output)
